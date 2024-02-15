@@ -5,3 +5,12 @@ def ancestors(child, p_tree):
         child = p_tree[child]
         result.append(child)
     return result
+
+m = int(input())
+for i in range(m):
+    child_1, child_2 = input().split()
+    ancestors_for_1 = set(ancestors(child_1, p_tree))
+    for ancestor in ancestors(child_2, p_tree):
+        if ancestor in ancestors_for_1:
+            print("Ancestor ",ancestor)
+            break
