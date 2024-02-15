@@ -1,0 +1,7 @@
+def ancestors(child, p_tree):
+    result = []
+    result.append(child)
+    while child in p_tree:
+        child = p_tree[child]
+        result.append(child)
+    return result
