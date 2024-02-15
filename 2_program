@@ -1,16 +1,22 @@
-def ancestors(child, p_tree):
+def find_ancestors(node, parent_tree):
     result = []
-    result.append(child)
-    while child in p_tree:
-        child = p_tree[child]
-        result.append(child)
+    result.append(node)
+    while node in parent_tree:
+        node = parent_tree[node]
+        result.append(node)
     return result
 
-m = int(input())
-for i in range(m):
-    child_1, child_2 = input().split()
-    ancestors_for_1 = set(ancestors(child_1, p_tree))
-    for ancestor in ancestors(child_2, p_tree):
-        if ancestor in ancestors_for_1:
-            print("Ancestor ",ancestor)
+parent_tree = dict()
+num_nodes = int(input(""))
+for i in range(num_nodes - 1):
+    child_node, parent_node = input("").split()
+    parent_tree[child_node] = parent_node
+    
+num_queries = int(input(""))
+for i in range(num_queries):
+    query_node_1, query_node_2 = input("").split()
+    ancestors_set_1 = set(find_ancestors(query_node_1, parent_tree))
+    for common_ancestor in find_ancestors(query_node_2, parent_tree):
+        if common_ancestor in ancestors_set_1:
+            print("Общий предок:", common_ancestor)
             break
